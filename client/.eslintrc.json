@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": ["plugin:react/recommended", "plugin:jest/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": "off",
+    "handle-callback-err": "off",
+    "consistent-return": "off",
+    "sonarjs/no-duplicate-string": "off",
+    "react/prop-types": ["off"]
+  }
+}
