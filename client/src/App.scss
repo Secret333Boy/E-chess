@@ -5,3 +5,19 @@
   align-items: center;
   justify-content: center;
 }
+
+$board-size: 500px;
+.board {
+  width: $board-size;
+  height: $board-size;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    height: calc($board-size / 8);
+    display: flex;
+    & .cell {
+      width: calc($board-size / 8);
+      height: 100%;
+    }
+  }
+}

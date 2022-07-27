@@ -28,6 +28,8 @@
     "handle-callback-err": "off",
     "consistent-return": "off",
     "sonarjs/no-duplicate-string": "off",
-    "react/prop-types": ["off"]
+    "react/prop-types": ["off"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }
