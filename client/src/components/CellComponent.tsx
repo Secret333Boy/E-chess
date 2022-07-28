@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import Cell, { CellColor } from '../models/Cell';
+import Cell from '../models/Cell';
+import { Color } from '../models/Color';
 
 interface CellComponentProps {
   cell: Cell;
@@ -11,7 +12,7 @@ const CellComponent: FC<CellComponentProps> = ({ cell }) => {
       className="cell"
       style={{
         backgroundColor:
-          cell.getColor() === CellColor.WHITE
+          cell.color === Color.WHITE
             ? 'rgb(245, 225, 204)'
             : 'rgb(152, 115, 75)',
       }}

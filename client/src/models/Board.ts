@@ -1,4 +1,5 @@
-import Cell, { CellColor } from './Cell';
+import Cell from './Cell';
+import { Color } from './Color';
 
 export default class Board {
   public grid: Cell[][];
@@ -9,7 +10,7 @@ export default class Board {
       this.grid.push([]);
       for (let j = 0; j < 8; j++) {
         this.grid[i].push(
-          new Cell((i + j) % 2 ? CellColor.BLACK : CellColor.WHITE)
+          new Cell((i + j) % 2 ? Color.BLACK : Color.WHITE, { x: i, y: j })
         );
       }
     }

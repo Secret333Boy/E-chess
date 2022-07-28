@@ -1,16 +1,16 @@
+import { Color } from './Color';
 import Figure from './Figure';
-
-export enum CellColor {
-  WHITE = 'WHITE',
-  BLACK = 'BLACK',
-}
+import Position from './Position';
 
 export default class Cell {
   private figure: Figure | null = null;
-  private readonly color: CellColor;
+  public readonly color: Color;
+  public readonly position: Position;
+  public available = false;
 
-  constructor(color: CellColor) {
+  constructor(color: Color, position: Position) {
     this.color = color;
+    this.position = position;
   }
 
   public getFigure(): Figure | null {
@@ -18,10 +18,8 @@ export default class Cell {
   }
 
   public setFigure(figure: Figure | null): void {
+    if (this.figure) this.figure.cell = null;
     this.figure = figure;
-  }
-
-  public getColor(): CellColor {
-    return this.color;
+    if (this.figure) this.figure.cell = this;
   }
 }
