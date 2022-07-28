@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
 $board-size: 500px;
@@ -18,6 +19,15 @@ $board-size: 500px;
     & .cell {
       width: calc($board-size / 8);
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & img {
+        width: 100%;
+        aspect-ratio: 1;
+        pointer-events: none;
+      }
     }
   }
 }

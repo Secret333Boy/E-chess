@@ -16,7 +16,11 @@ const CellComponent: FC<CellComponentProps> = ({ cell }) => {
             ? 'rgb(245, 225, 204)'
             : 'rgb(152, 115, 75)',
       }}
-    ></div>
+    >
+      {cell.isEmpty ? null : (
+        <img src={'./sprites/' + cell.getFigure()?.spriteName}></img>
+      )}
+    </div>
   );
 };
 

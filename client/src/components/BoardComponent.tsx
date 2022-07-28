@@ -3,8 +3,7 @@ import Board from '../models/Board';
 import CellComponent from './CellComponent';
 
 const BoardComponent = () => {
-  const [board, setBoard] = useState(new Board());
-
+  const [board] = useState(new Board());
   return (
     <div className="board">
       {board.grid.map((row, i) => (

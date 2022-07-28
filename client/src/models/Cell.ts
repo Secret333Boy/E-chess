@@ -22,4 +22,8 @@ export default class Cell {
     this.figure = figure;
     if (this.figure) this.figure.cell = this;
   }
+
+  get isEmpty(): boolean {
+    return !this.figure;
+  }
 }
