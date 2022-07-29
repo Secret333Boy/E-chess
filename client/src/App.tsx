@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
-import Board from './components/BoardComponent';
+import BoardComponent from './components/BoardComponent';
+import PlayerContext from './contexts/PlayerContext';
+import Board from './models/Board';
+import Player from './models/Player';
 
 const App = () => {
+  const [board, setBoard] = useState(new Board());
+  const player = new Player(board, () => setBoard(board.copy()));
   return (
     <div className="App">
-      <Board />
+      <PlayerContext.Provider value={{ player }}>
+        <BoardComponent board={board} />
+      </PlayerContext.Provider>
     </div>
   );
 };

@@ -6,9 +6,10 @@ import Knight from './figures/Knight';
 import Pawn from './figures/Pawn';
 import Queen from './figures/Queen';
 import Rook from './figures/Rook';
+import Position from './Position';
 
 export default class Board {
-  public grid: Cell[][];
+  private grid: Cell[][];
 
   constructor() {
     this.grid = [];
@@ -23,9 +24,11 @@ export default class Board {
     this.initCells();
   }
 
-  private initCells() {
+  private initCells(playedIsBlack = false) {
+    const playerColor = playedIsBlack ? Color.BLACK : Color.WHITE;
+    const enemyColor = playedIsBlack ? Color.WHITE : Color.BLACK;
     [0, 1, 6, 7].map((i) => {
-      const color = i < 2 ? Color.BLACK : Color.WHITE;
+      const color = i < 2 ? enemyColor : playerColor;
       if (i === 0 || i === 7) {
         [0, 7].map((j) => {
           this.grid[i][j].setFigure(new Rook(color));
@@ -42,8 +45,22 @@ export default class Board {
       }
 
       for (let j = 0; j < 8; j++) {
-        this.grid[i][j].setFigure(new Pawn(color));
+        this.grid[i][j].setFigure(new Pawn(color, i === 1));
       }
     });
+  }
+
+  public getGrid(): Cell[][] {
+    return this.grid;
+  }
+
+  public getCell(position: Position): Cell {
+    return this.grid[position.x][position.y];
+  }
+
+  public copy(): Board {
+    const board = new Board();
+    board.grid = this.grid;
+    return board;
   }
 }

@@ -26,7 +26,7 @@ $board-size: 500px;
       & img {
         width: 100%;
         aspect-ratio: 1;
-        pointer-events: none;
+        cursor: grab;
       }
     }
   }

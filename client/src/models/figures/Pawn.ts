@@ -3,30 +3,32 @@ import Figure, { FigureType } from '../Figure';
 import Move from '../Move';
 import Position from '../Position';
 
-const pawnAvailableMovesCallback = (position: Position | undefined): Move[] => {
-  if (!position) return [];
-  const moves: Move[] = [];
-  const newPosition: Position = {
-    x: position.x,
-    y: position.y + 1,
-  };
-  if (
-    !(
-      newPosition.x < 0 ||
-      newPosition.x > 7 ||
-      newPosition.y < 0 ||
-      newPosition.y > 7
+const pawnAvailableMovesCallback =
+  (down: boolean) =>
+  (position: Position | undefined): Move[] => {
+    if (!position) return [];
+    const moves: Move[] = [];
+    const newPosition: Position = {
+      x: position.x + (down ? 1 : -1),
+      y: position.y,
+    };
+    if (
+      !(
+        newPosition.x < 0 ||
+        newPosition.x > 7 ||
+        newPosition.y < 0 ||
+        newPosition.y > 7
+      )
     )
-  )
-    moves.push({
-      from: position,
-      to: newPosition,
-    });
-  return moves;
-};
+      moves.push({
+        from: position,
+        to: newPosition,
+      });
+    return moves;
+  };
 
 export default class Pawn extends Figure {
-  constructor(color: Color) {
-    super(color, FigureType.PAWN, pawnAvailableMovesCallback);
+  constructor(color: Color, down = false) {
+    super(color, FigureType.PAWN, pawnAvailableMovesCallback(down));
   }
 }

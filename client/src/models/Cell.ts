@@ -17,10 +17,14 @@ export default class Cell {
     return this.figure;
   }
 
-  public setFigure(figure: Figure | null): void {
+  public setFigure(figure: Figure | null) {
     if (this.figure) this.figure.cell = null;
     this.figure = figure;
     if (this.figure) this.figure.cell = this;
+  }
+
+  public toggleAvailable() {
+    this.available = !this.available;
   }
 
   get isEmpty(): boolean {
