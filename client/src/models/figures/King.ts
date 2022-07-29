@@ -1,9 +1,13 @@
+import Board from '../Board';
 import { Color } from '../Color';
 import Figure, { FigureType } from '../Figure';
 import Move from '../Move';
 import Position from '../Position';
 
-const kingAvailableMovesCallback = (position: Position | undefined): Move[] => {
+const kingAvailableMovesCallback = (
+  position?: Position,
+  board?: Board
+): Move[] => {
   if (!position) return [];
   const moves: Move[] = [];
   for (let i = -1; i <= 1; i++) {
@@ -14,7 +18,10 @@ const kingAvailableMovesCallback = (position: Position | undefined): Move[] => {
         newPosition.x < 0 ||
         newPosition.x > 7 ||
         newPosition.y < 0 ||
-        newPosition.y > 7
+        newPosition.y > 7 ||
+        (board &&
+          board.getCell(newPosition).getFigure()?.color ===
+            board.getPlayerColor())
       )
         continue;
       moves.push({

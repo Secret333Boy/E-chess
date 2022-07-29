@@ -18,10 +18,10 @@ const CellComponent: FC<CellComponentProps> = ({ cell }) => {
           cell.color === Color.WHITE
             ? 'rgb(245, 225, 204)'
             : 'rgb(152, 115, 75)',
-        border: `${cell.available ? '1' : '0'}px solid red`,
+        border: `${cell.available ? '5' : '0'}px solid red`,
       }}
       onClick={() => {
-        if (cell.isEmpty) return;
+        if (cell.isEmpty || cell.getFigure()?.color !== player.color) return;
         player?.selectFigure(cell.getFigure() as Figure);
       }}
     >

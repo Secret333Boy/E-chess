@@ -10,6 +10,7 @@ import Position from './Position';
 
 export default class Board {
   private grid: Cell[][];
+  private isWhite = true;
 
   constructor() {
     this.grid = [];
@@ -17,18 +18,22 @@ export default class Board {
       this.grid.push([]);
       for (let j = 0; j < 8; j++) {
         this.grid[i].push(
-          new Cell((i + j) % 2 ? Color.BLACK : Color.WHITE, { x: i, y: j })
+          new Cell(
+            (i + j) % 2 ? Color.BLACK : Color.WHITE,
+            { x: i, y: j },
+            this
+          )
         );
       }
     }
-    this.initCells();
   }
 
-  private initCells(playedIsBlack = false) {
-    const playerColor = playedIsBlack ? Color.BLACK : Color.WHITE;
-    const enemyColor = playedIsBlack ? Color.WHITE : Color.BLACK;
+  public initCells(isWhite = false) {
+    this.isWhite = isWhite;
+    const playerColor = isWhite ? Color.WHITE : Color.BLACK;
+    const opponentColor = isWhite ? Color.BLACK : Color.WHITE;
     [0, 1, 6, 7].map((i) => {
-      const color = i < 2 ? enemyColor : playerColor;
+      const color = i < 2 ? opponentColor : playerColor;
       if (i === 0 || i === 7) {
         [0, 7].map((j) => {
           this.grid[i][j].setFigure(new Rook(color));
@@ -45,7 +50,7 @@ export default class Board {
       }
 
       for (let j = 0; j < 8; j++) {
-        this.grid[i][j].setFigure(new Pawn(color, i === 1));
+        this.grid[i][j].setFigure(new Pawn(color, true, i === 1));
       }
     });
   }
@@ -62,5 +67,9 @@ export default class Board {
     const board = new Board();
     board.grid = this.grid;
     return board;
+  }
+
+  public getPlayerColor(): Color {
+    return this.isWhite ? Color.WHITE : Color.BLACK;
   }
 }

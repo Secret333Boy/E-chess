@@ -1,12 +1,16 @@
 import Board from './Board';
+import { Color } from './Color';
 import Figure from './Figure';
 
 export default class Player {
   public selectedFigure: Figure | null = null;
+  public color: Color;
   private board: Board;
   private updateBoard: () => void;
 
-  constructor(board: Board, updateBoard: () => void) {
+  constructor(color: Color, board: Board, updateBoard: () => void) {
+    this.color = color;
+    board.initCells(color === Color.WHITE);
     this.board = board;
     this.updateBoard = updateBoard;
   }
@@ -26,5 +30,9 @@ export default class Player {
     });
     this.selectedFigure = null;
     this.updateBoard();
+  }
+
+  public getBoard(): Board {
+    return this.board;
   }
 }

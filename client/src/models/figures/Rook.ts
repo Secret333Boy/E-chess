@@ -1,33 +1,29 @@
+import getPossibleLinearPositions from '../../utils/getPossibleLinearPositions';
+import Board from '../Board';
 import { Color } from '../Color';
 import Figure, { FigureType } from '../Figure';
 import Move from '../Move';
 import Position from '../Position';
 
-const rookAvailableMovesCallback = (position: Position | undefined): Move[] => {
+const rookAvailableMovesCallback = (
+  position?: Position,
+  board?: Board
+): Move[] => {
   if (!position) return [];
   const moves: Move[] = [];
-  for (let i = -7; i <= 7; i++) {
-    if (i === 0) continue;
-    const newPositions: Position[] = [
-      { x: position.x + i, y: position.y },
-      { x: position.x, y: position.y + i },
-    ];
 
-    newPositions.map((newPosition) => {
-      if (
-        !(
-          newPosition.x < 0 ||
-          newPosition.x > 7 ||
-          newPosition.y < 0 ||
-          newPosition.y > 7
-        )
+  getPossibleLinearPositions(position, board).map((newPosition) => {
+    if (
+      !(
+        board &&
+        board.getCell(newPosition).getFigure()?.color === board.getPlayerColor()
       )
-        moves.push({
-          from: position,
-          to: newPosition,
-        });
-    });
-  }
+    )
+      moves.push({
+        from: position,
+        to: newPosition,
+      });
+  });
   return moves;
 };
 

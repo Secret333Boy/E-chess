@@ -1,3 +1,4 @@
+import Board from './Board';
 import Cell from './Cell';
 import { Color } from './Color';
 import Move from './Move';
@@ -17,7 +18,10 @@ export default class Figure {
   public readonly type: FigureType;
   public readonly spriteName: string;
   public cell: Cell | null = null;
-  private availableMovesCallback: (position: Position | undefined) => Move[];
+  private availableMovesCallback: (
+    position?: Position,
+    board?: Board
+  ) => Move[];
 
   constructor(
     color: Color,
@@ -31,6 +35,6 @@ export default class Figure {
   }
 
   get availableMoves() {
-    return this.availableMovesCallback(this.cell?.position);
+    return this.availableMovesCallback(this.cell?.position, this.cell?.board);
   }
 }

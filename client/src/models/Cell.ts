@@ -1,3 +1,4 @@
+import Board from './Board';
 import { Color } from './Color';
 import Figure from './Figure';
 import Position from './Position';
@@ -6,11 +7,13 @@ export default class Cell {
   private figure: Figure | null = null;
   public readonly color: Color;
   public readonly position: Position;
+  public readonly board: Board;
   public available = false;
 
-  constructor(color: Color, position: Position) {
+  constructor(color: Color, position: Position, board: Board) {
     this.color = color;
     this.position = position;
+    this.board = board;
   }
 
   public getFigure(): Figure | null {
