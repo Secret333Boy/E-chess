@@ -1,6 +1,7 @@
 import Board from './Board';
 import { Color } from './Color';
 import Figure from './Figure';
+import Move from './Move';
 
 export default class Player {
   public selectedFigure: Figure | null = null;
@@ -30,6 +31,18 @@ export default class Player {
     });
     this.selectedFigure = null;
     this.updateBoard();
+  }
+
+  public makeMove(move?: Move) {
+    if (move) {
+      this.selectedFigure?.availableMoves.map((move) => {
+        this.board.getCell(move.to).toggleAvailable();
+      });
+      this.selectedFigure?.cell?.setFigure(null);
+      this.board.getCell(move.to).setFigure(this.selectedFigure);
+      this.selectedFigure = null;
+      this.updateBoard();
+    }
   }
 
   public getBoard(): Board {

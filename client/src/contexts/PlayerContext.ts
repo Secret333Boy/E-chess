@@ -4,7 +4,7 @@ import { Color } from '../models/Color';
 import Player from '../models/Player';
 
 interface IPlayerContext {
-  readonly player: Player;
+  readonly player: Player | null;
 }
 
 export default createContext<IPlayerContext>({
