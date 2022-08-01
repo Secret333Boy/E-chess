@@ -20,7 +20,7 @@ const kingAvailableMovesCallback = (
         newPosition.y < 0 ||
         newPosition.y > 7 ||
         (board &&
-          board.getCell(newPosition).getFigure()?.color ===
+          board.getCell(newPosition)?.getFigure()?.color ===
             board.getPlayerColor())
       )
         continue;

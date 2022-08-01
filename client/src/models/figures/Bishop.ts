@@ -16,7 +16,8 @@ const bishopAvailableMovesCallback = (
     if (
       !(
         board &&
-        board.getCell(newPosition).getFigure()?.color === board.getPlayerColor()
+        board.getCell(newPosition)?.getFigure()?.color ===
+          board.getPlayerColor()
       )
     )
       moves.push({

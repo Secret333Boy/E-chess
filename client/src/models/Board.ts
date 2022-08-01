@@ -59,7 +59,9 @@ export default class Board {
     return this.grid;
   }
 
-  public getCell(position: Position): Cell {
+  public getCell(position: Position): Cell | null {
+    if (position.x < 0 || position.x > 7 || position.y < 0 || position.y > 7)
+      return null;
     return this.grid[position.x][position.y];
   }
 

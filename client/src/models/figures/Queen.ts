@@ -18,7 +18,7 @@ const queenAvailableMovesCallback = (
       if (
         !(
           board &&
-          board.getCell(newPosition).getFigure()?.color ===
+          board.getCell(newPosition)?.getFigure()?.color ===
             board.getPlayerColor()
         )
       )

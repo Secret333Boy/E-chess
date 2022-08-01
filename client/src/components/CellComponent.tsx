@@ -53,6 +53,7 @@ const CellComponent: FC<CellComponentProps> = ({ cell }) => {
           onDragEnd={() => {
             player?.unselectFigure();
           }}
+          draggable={cell.getFigure()?.color === player?.color}
         ></img>
       )}
     </div>

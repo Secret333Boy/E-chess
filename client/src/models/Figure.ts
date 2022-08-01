@@ -37,4 +37,8 @@ export default class Figure {
   get availableMoves() {
     return this.availableMovesCallback(this.cell?.position, this.cell?.board);
   }
+
+  public static isFigure(obj: unknown) {
+    return obj instanceof Figure;
+  }
 }

@@ -15,7 +15,7 @@ export default (
   ) {
     const newPosition: Position = { x, y: position.y - (position.x - x) };
     newPositions.push(newPosition);
-    if (!board?.getCell(newPosition).isEmpty) {
+    if (!board?.getCell(newPosition)?.isEmpty) {
       break;
     }
   }
@@ -27,7 +27,7 @@ export default (
   ) {
     const newPosition: Position = { x, y: position.y - (position.x - x) };
     newPositions.push(newPosition);
-    if (!board?.getCell(newPosition).isEmpty) {
+    if (!board?.getCell(newPosition)?.isEmpty) {
       break;
     }
   }
@@ -39,7 +39,7 @@ export default (
   ) {
     const newPosition: Position = { x: position.x + (position.y - y), y };
     newPositions.push(newPosition);
-    if (!board?.getCell(newPosition).isEmpty) {
+    if (!board?.getCell(newPosition)?.isEmpty) {
       break;
     }
   }
@@ -51,7 +51,7 @@ export default (
   ) {
     const newPosition: Position = { x: position.x + (position.y - y), y };
     newPositions.push(newPosition);
-    if (!board?.getCell(newPosition).isEmpty) {
+    if (!board?.getCell(newPosition)?.isEmpty) {
       break;
     }
   }
