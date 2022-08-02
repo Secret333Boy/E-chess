@@ -18,10 +18,7 @@ export default class FENSerializer {
           c++;
         }
       }
-      if (c !== 0) {
-        row += c;
-        c = 0;
-      }
+      if (c !== 0) row += c;
       result.push(row);
     }
     return result.join('/');
