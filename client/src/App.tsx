@@ -5,10 +5,12 @@ import PlayerContext from './contexts/PlayerContext';
 import Board from './models/Board';
 import { Color } from './models/Color';
 import Player from './models/Player';
+import { useAppSelector } from './store/hooks';
 
 const App = () => {
   const [board, setBoard] = useState<Board>(new Board());
   const [player, setPlayer] = useState<Player | null>(null);
+  const gameMode = useAppSelector((state) => state.gameModeReducer.gameMode);
   useEffect(() => {
     setPlayer(new Player(Color.WHITE, board, () => setBoard(board.copy())));
   }, []);

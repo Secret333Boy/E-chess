@@ -71,6 +71,10 @@ export default class Board {
     return board;
   }
 
+  public togglePlayerColor() {
+    this.isWhite = !this.isWhite;
+  }
+
   public getPlayerColor(): Color {
     return this.isWhite ? Color.WHITE : Color.BLACK;
   }

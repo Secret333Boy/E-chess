@@ -2,6 +2,7 @@ import Board from './Board';
 import { Color } from './Color';
 import Figure from './Figure';
 import Pawn from './figures/Pawn';
+import { GameMode } from './GameMode';
 import Move from './Move';
 
 export default class Player {
@@ -9,12 +10,19 @@ export default class Player {
   public color: Color;
   private board: Board;
   private updateBoard: () => void;
+  private gameMode: GameMode;
 
-  constructor(color: Color, board: Board, updateBoard: () => void) {
+  constructor(
+    color: Color,
+    board: Board,
+    updateBoard: () => void,
+    gameMode = GameMode.ON_THE_SAME_DEVICE
+  ) {
     board.initCells(color === Color.WHITE);
     this.color = color;
     this.board = board;
     this.updateBoard = updateBoard;
+    this.gameMode = gameMode;
   }
 
   public selectFigure(figure: Figure) {
@@ -50,6 +58,10 @@ export default class Player {
       }
       this.board.getCell(move.to)?.setFigure(this.selectedFigure);
       this.selectedFigure = null;
+      if (this.gameMode === GameMode.ON_THE_SAME_DEVICE) {
+        this.color = this.color === Color.WHITE ? Color.BLACK : Color.WHITE;
+        this.board.togglePlayerColor();
+      }
       this.updateBoard();
     }
   }
