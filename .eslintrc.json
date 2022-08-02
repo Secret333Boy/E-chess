@@ -17,6 +17,13 @@
     "sourceType": "module"
   },
   "plugins": ["prettier", "sonarjs", "@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    }
+  },
   "rules": {
     "arrow-parens": ["error", "always"],
     "comma-dangle": "off",

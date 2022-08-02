@@ -1,19 +1,14 @@
-import express from 'express';
+import app from './app';
+import http from 'http';
+import { Server } from 'ws';
 
 const port = process.env.PORT || 3000;
-
-const app = express();
-
-app.disable('x-powered-by');
-
-app.get('/', (_req, res) => {
-  res.send('Hello World!');
-});
-
-app.get('*', (_req, res) => {
-  res.status(404).end();
-});
-
-app.listen(port, () => {
+const server = http.createServer(app).listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+const wss = new Server({ server });
+
+wss.on('connection', () => {
+  console.log('Connected');
 });
