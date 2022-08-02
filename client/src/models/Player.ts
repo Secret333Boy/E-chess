@@ -27,7 +27,7 @@ export default class Player {
 
   public selectFigure(figure: Figure) {
     this.selectedFigure = figure;
-    figure.availableMoves.map((move) => {
+    figure.availableMoves.forEach((move) => {
       this.board.getCell(move.to)?.toggleAvailable();
     });
     this.updateBoard();
@@ -49,8 +49,8 @@ export default class Player {
         (m) => m.to.x === move.to.x && m.to.y === move.to.y
       ).length as number) > 0
     ) {
-      this.selectedFigure?.availableMoves.map((move) => {
-        this.board.getCell(move.to)?.toggleAvailable();
+      this.selectedFigure?.availableMoves.map((availableMove) => {
+        this.board.getCell(availableMove.to)?.toggleAvailable();
       });
       this.selectedFigure?.cell?.setFigure(null);
       if (Pawn.isPawn(this.selectedFigure)) {

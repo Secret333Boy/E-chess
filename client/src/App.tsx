@@ -13,7 +13,9 @@ const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
   const gameMode = useAppSelector((state) => state.gameModeReducer.gameMode);
   useEffect(() => {
-    setPlayer(new Player(Color.WHITE, board, () => setBoard(board.copy())));
+    setPlayer(
+      new Player(Color.WHITE, board, () => setBoard(board.copy()), gameMode)
+    );
   }, []);
   return (
     <div className="App">

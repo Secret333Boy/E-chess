@@ -12,7 +12,7 @@ const rookAvailableMovesCallback = (
   if (!position) return [];
   const moves: Move[] = [];
 
-  getPossibleLinearPositions(position, board).map((newPosition) => {
+  getPossibleLinearPositions(position, board).forEach((newPosition) => {
     if (
       !(
         board &&

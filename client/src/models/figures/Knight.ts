@@ -20,7 +20,7 @@ const knightAvailableMovesCallback = (
     { x: position.x - 2, y: position.y + 1 },
     { x: position.x - 2, y: position.y - 1 },
   ];
-  newPositions.map((newPosition) => {
+  newPositions.forEach((newPosition) => {
     if (
       !(
         newPosition.x < 0 ||

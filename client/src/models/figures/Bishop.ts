@@ -12,7 +12,7 @@ const bishopAvailableMovesCallback = (
   if (!position) return [];
   const moves: Move[] = [];
 
-  getPossibleDiagonalPositions(position, board).map((newPosition) => {
+  getPossibleDiagonalPositions(position, board).forEach((newPosition) => {
     if (
       !(
         board &&

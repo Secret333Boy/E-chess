@@ -33,16 +33,16 @@ export default class Board {
     this.isWhite = isWhite;
     const playerColor = isWhite ? Color.WHITE : Color.BLACK;
     const opponentColor = isWhite ? Color.BLACK : Color.WHITE;
-    [0, 1, 6, 7].map((i) => {
+    [0, 1, 6, 7].forEach((i) => {
       const color = i < 2 ? opponentColor : playerColor;
       if (i === 0 || i === 7) {
-        [0, 7].map((j) => {
+        [0, 7].forEach((j) => {
           this.grid[i][j].setFigure(new Rook(color));
         });
-        [1, 6].map((j) => {
+        [1, 6].forEach((j) => {
           this.grid[i][j].setFigure(new Knight(color));
         });
-        [2, 5].map((j) => {
+        [2, 5].forEach((j) => {
           this.grid[i][j].setFigure(new Bishop(color));
         });
         this.grid[i][3].setFigure(new Queen(color));

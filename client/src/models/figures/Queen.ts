@@ -14,7 +14,7 @@ const queenAvailableMovesCallback = (
   const moves: Move[] = [];
   getPossibleDiagonalPositions(position, board)
     .concat(getPossibleLinearPositions(position, board))
-    .map((newPosition) => {
+    .forEach((newPosition) => {
       if (
         !(
           board &&

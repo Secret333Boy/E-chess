@@ -6,17 +6,16 @@ import Position from '../Position';
 
 const pawnAvailableMovesCallback =
   (down: boolean, isFirstMove: boolean) =>
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   (position: Position | undefined, board?: Board): Move[] => {
     if (!position) return [];
     const moves: Move[] = [];
-    const newPosition: Position = {
+    const initialNewPosition: Position = {
       x: position.x + (down ? 1 : -1),
       y: position.y,
     };
     const newPositions: Position[] = [];
-    if (board?.getCell(newPosition)?.isEmpty) {
-      newPositions.push(newPosition);
+    if (board?.getCell(initialNewPosition)?.isEmpty) {
+      newPositions.push(initialNewPosition);
       const additionalPosition: Position = {
         x: position.x + (down ? 2 : -2),
         y: position.y,
@@ -27,11 +26,11 @@ const pawnAvailableMovesCallback =
     }
 
     const possibleEnemyPositions: Position[] = [
-      { x: newPosition.x, y: newPosition.y + 1 },
-      { x: newPosition.x, y: newPosition.y - 1 },
+      { x: initialNewPosition.x, y: initialNewPosition.y + 1 },
+      { x: initialNewPosition.x, y: initialNewPosition.y - 1 },
     ];
 
-    possibleEnemyPositions.map((enemyPosition) => {
+    possibleEnemyPositions.forEach((enemyPosition) => {
       if (
         !board?.getCell(enemyPosition)?.isEmpty &&
         board?.getCell(enemyPosition)?.getFigure()?.color !==
@@ -40,7 +39,7 @@ const pawnAvailableMovesCallback =
         newPositions.push(enemyPosition);
     });
 
-    newPositions.map((newPosition) => {
+    newPositions.forEach((newPosition) => {
       if (
         !(
           newPosition.x < 0 ||
