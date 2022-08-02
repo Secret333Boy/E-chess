@@ -1,5 +1,6 @@
 import Cell from './Cell';
 import { Color } from './Color';
+import FENSerializer from './FENSerializer';
 import Bishop from './figures/Bishop';
 import King from './figures/King';
 import Knight from './figures/Knight';
@@ -78,5 +79,9 @@ export default class Board {
 
   public getPlayerColor(): Color {
     return this.isWhite ? Color.WHITE : Color.BLACK;
+  }
+
+  public getFENCode(): string {
+    return FENSerializer.serialize(this.grid);
   }
 }

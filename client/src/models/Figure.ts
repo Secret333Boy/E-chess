@@ -17,6 +17,7 @@ export default class Figure {
   public readonly color: Color;
   public readonly type: FigureType;
   public readonly spriteName: string;
+  public readonly figureCode: string;
   public cell: Cell | null = null;
   private availableMovesCallback: (
     position?: Position,
@@ -31,6 +32,9 @@ export default class Figure {
     this.color = color;
     this.type = type;
     this.spriteName = type + (color === Color.BLACK ? '-d' : '') + '.svg';
+    const lowerFigureCode = type === FigureType.KNIGHT ? 'n' : type[0];
+    this.figureCode =
+      color === Color.WHITE ? lowerFigureCode.toUpperCase() : lowerFigureCode;
     this.availableMovesCallback = availableMovesCallback;
   }
 
