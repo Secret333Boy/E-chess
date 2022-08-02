@@ -68,6 +68,7 @@ export default class Board {
   public copy(): Board {
     const board = new Board();
     board.grid = this.grid;
+    board.isWhite = this.isWhite;
     return board;
   }
 
