@@ -1,4 +1,4 @@
-import Position from './Position';
+import Position from './interfaces/Position';
 
 export default class Move {
   public from: Position;

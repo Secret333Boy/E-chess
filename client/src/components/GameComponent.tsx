@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PlayerContext from '../contexts/PlayerContext';
 import Board from '../models/Board';
-import { Color } from '../models/Color';
+import { Color } from '../models/enums/Color';
 import Player from '../models/Player';
 import TimerComponent from '../components/TimerComponent';
 import BoardComponent from './BoardComponent';
-import { GameMode } from '../models/GameMode';
+import { GameMode } from '../models/enums/GameMode';
 
 interface GameComponentProps {
   gameMode: GameMode;

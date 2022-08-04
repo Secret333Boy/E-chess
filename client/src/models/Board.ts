@@ -1,5 +1,5 @@
 import Cell from './Cell';
-import { Color } from './Color';
+import { Color } from './enums/Color';
 import FENSerializer from './FENSerializer';
 import Bishop from './figures/Bishop';
 import King from './figures/King';
@@ -7,7 +7,7 @@ import Knight from './figures/Knight';
 import Pawn from './figures/Pawn';
 import Queen from './figures/Queen';
 import Rook from './figures/Rook';
-import Position from './Position';
+import Position from './interfaces/Position';
 
 export default class Board {
   private grid: Cell[][];

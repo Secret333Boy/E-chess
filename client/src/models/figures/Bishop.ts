@@ -1,9 +1,10 @@
 import getPossibleDiagonalPositions from '../../utils/getPossibleDiagonalPositions';
 import Board from '../Board';
-import { Color } from '../Color';
-import Figure, { FigureType } from '../Figure';
+import { Color } from '../enums/Color';
+import Figure from '../Figure';
 import Move from '../Move';
-import Position from '../Position';
+import Position from '../interfaces/Position';
+import { FigureType } from '../enums/FiguteType';
 
 const bishopAvailableMovesCallback = (
   position?: Position,

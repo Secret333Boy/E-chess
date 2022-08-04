@@ -1,5 +1,5 @@
 import Board from '../models/Board';
-import Position from '../models/Position';
+import Position from '../models/interfaces/Position';
 
 export default (position: Position, board?: Board): Position[] => {
   const newPositions: Position[] = [];

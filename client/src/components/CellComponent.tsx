@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import PlayerContext from '../contexts/PlayerContext';
 import Cell from '../models/Cell';
-import { Color } from '../models/Color';
+import { Color } from '../models/enums/Color';
 import Figure from '../models/Figure';
 
 interface CellComponentProps {

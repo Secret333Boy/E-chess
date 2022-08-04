@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import Board from '../models/Board';
-import { Color } from '../models/Color';
+import { Color } from '../models/enums/Color';
 import Player from '../models/Player';
 
 interface IPlayerContext {

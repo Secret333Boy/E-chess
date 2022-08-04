@@ -1,7 +1,7 @@
 import Board from './Board';
-import { Color } from './Color';
+import { Color } from './enums/Color';
 import Figure from './Figure';
-import Position from './Position';
+import Position from './interfaces/Position';
 
 export default class Cell {
   private figure: Figure | null = null;

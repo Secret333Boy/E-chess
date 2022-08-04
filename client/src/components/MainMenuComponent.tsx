@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from '../store/hooks';
-import { GameMode } from '../models/GameMode';
+import { GameMode } from '../models/enums/GameMode';
 import { setGameMode } from '../store/actions/gameModeActions';
 
 const MainMenuComponent = () => {

@@ -1,17 +1,9 @@
 import Board from './Board';
 import Cell from './Cell';
-import { Color } from './Color';
+import { Color } from './enums/Color';
 import Move from './Move';
-import Position from './Position';
-
-export enum FigureType {
-  KING = 'king',
-  QUEEN = 'queen',
-  ROOK = 'rook',
-  BISHOP = 'bishop',
-  KNIGHT = 'knight',
-  PAWN = 'pawn',
-}
+import Position from './interfaces/Position';
+import { FigureType } from './enums/FiguteType';
 
 export default class Figure {
   public readonly color: Color;

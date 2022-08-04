@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GameMode } from '../../models/GameMode';
+import { GameMode } from '../../models/enums/GameMode';
 
 interface GameModeState {
   gameMode: GameMode | null;

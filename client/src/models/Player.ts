@@ -1,8 +1,8 @@
 import Board from './Board';
-import { Color } from './Color';
+import { Color } from './enums/Color';
 import Figure from './Figure';
 import Pawn from './figures/Pawn';
-import { GameMode } from './GameMode';
+import { GameMode } from './enums/GameMode';
 import Move from './Move';
 
 export default class Player {
