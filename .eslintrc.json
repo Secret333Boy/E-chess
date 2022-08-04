@@ -30,6 +30,7 @@
     "handle-callback-err": "off",
     "consistent-return": "off",
     "sonarjs/no-duplicate-string": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "class-methods-use-this": "off"
   }
 }

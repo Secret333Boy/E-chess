@@ -9,6 +9,6 @@ const server = http.createServer(app).listen(port, () => {
 
 const wss = new Server({ server });
 
-wss.on('connection', () => {
-  console.log('Connected');
+wss.on('connection', (ws) => {
+  console.log(ws);
 });
