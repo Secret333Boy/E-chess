@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameMode } from '../../models/GameMode';
 
 interface GameModeState {
-  gameMode: GameMode;
+  gameMode: GameMode | null;
 }
 
 const initialState: GameModeState = {
-  gameMode: GameMode.ON_THE_SAME_DEVICE,
+  gameMode: null,
 };
 
 const gameModeSlice = createSlice({

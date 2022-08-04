@@ -5,6 +5,7 @@ const timer = new Timer();
 const TimerComponent = () => {
   const [time, setTime] = useState(timer.timeFormatted);
   useEffect(() => {
+    timer.start();
     setInterval(() => {
       setTime(timer.timeFormatted);
     }, 500);
