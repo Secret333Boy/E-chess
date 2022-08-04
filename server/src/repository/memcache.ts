@@ -6,6 +6,17 @@ export default class MemCache {
   }
 
   public setItem(key: string, value: unknown): void {
-    if (!this.cache.has(key)) this.cache.set(key, value);
+    if (this.cache.has(key)) {
+      throw new Error(`Key ${key} already exists`);
+    }
+    this.cache.set(key, value);
+  }
+
+  public removeItem(key: string): void {
+    this.cache.delete(key);
+  }
+
+  public getSize(): number {
+    return this.cache.size;
   }
 }
