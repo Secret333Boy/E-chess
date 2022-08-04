@@ -1,4 +1,4 @@
-import createRouter from 'express';
+import { Router as createRouter } from 'express';
 import PingController from '../controllers/PingController';
 
 const router = createRouter();
