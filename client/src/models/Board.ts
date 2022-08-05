@@ -84,4 +84,8 @@ export default class Board {
   public getFENCode(): string {
     return FENSerializer.serialize(this.grid);
   }
+
+  public applyFENCode(fen: string): void {
+    this.grid = FENSerializer.deserialize(fen, this);
+  }
 }
