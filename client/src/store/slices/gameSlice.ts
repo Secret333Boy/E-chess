@@ -1,22 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameMode } from '../../models/enums/GameMode';
 
-interface GameModeState {
+interface GameState {
   gameMode: GameMode | null;
+  gameId: string;
 }
 
-const initialState: GameModeState = {
+const initialState: GameState = {
   gameMode: null,
+  gameId: '',
 };
 
-const gameModeSlice = createSlice({
+const gameSlice = createSlice({
   name: 'gameMode',
   initialState,
   reducers: {
     setGameMode: (state, action: PayloadAction<GameMode>) => {
       state.gameMode = action.payload;
     },
+    setGameId: (state, action: PayloadAction<string>) => {
+      state.gameId = action.payload;
+    },
   },
 });
 
-export default gameModeSlice;
+export default gameSlice;

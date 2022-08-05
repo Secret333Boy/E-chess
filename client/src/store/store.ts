@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameModeReducer from './reducers/gameModeReducer';
+import gameReducer from './reducers/gameReducer';
 
 export const store = configureStore({
-  reducer: { gameModeReducer },
+  reducer: { gameReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

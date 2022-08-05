@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Timer from '../models/Timer';
 
-const timer = new Timer();
 const TimerComponent = () => {
+  const timer = new Timer();
   const [time, setTime] = useState(timer.timeFormatted);
   useEffect(() => {
     timer.start();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { GameMode } from '../models/enums/GameMode';
-import { setGameMode } from '../store/actions/gameModeActions';
+import { setGameMode } from '../store/actions/gameActions';
 
 const MainMenuComponent = () => {
   const dispath = useAppDispatch();
