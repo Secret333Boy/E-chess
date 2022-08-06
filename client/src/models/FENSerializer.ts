@@ -63,7 +63,7 @@ export default class FENSerializer {
 
         switch (char) {
           case 'P':
-            cell.setFigure(new Pawn(Color.WHITE, i === 1, false));
+            cell.setFigure(new Pawn(Color.WHITE, i === 6, false));
             break;
           case 'N':
             cell.setFigure(new Knight(Color.WHITE));
@@ -81,7 +81,8 @@ export default class FENSerializer {
             cell.setFigure(new King(Color.WHITE));
             break;
           case 'p':
-            cell.setFigure(new Pawn(Color.BLACK, i === 6, true));
+            console.log(i);
+            cell.setFigure(new Pawn(Color.BLACK, i === 1, true));
             break;
           case 'n':
             cell.setFigure(new Knight(Color.BLACK));

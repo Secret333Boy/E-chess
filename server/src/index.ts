@@ -14,11 +14,10 @@ const gameService = new GameService();
 wss.on('connection', async (ws) => {
   console.log('Client connected');
   let game: Game = await gameService.createGame();
-  game.playerWhite = ws;
   ws.onmessage = async (event) => {
     const payload = JSON.parse(event.data.toString());
-    console.log(payload);
     if (payload.type === 'request') {
+      game.playerWhite = ws;
       ws.send(JSON.stringify({ type: 'gameId', id: game.id }));
     }
 
@@ -31,14 +30,27 @@ wss.on('connection', async (ws) => {
         game = foundGame;
         game.playerBlack = ws;
         game.playerWhite?.send(
-          JSON.stringify({ type: 'verified', id: game.id })
+          JSON.stringify({ type: 'verified', id: game.id, color: 'white' })
         );
       }
       ws.send(
         JSON.stringify({
           type: isVerified ? 'verified' : 'rejected',
           id: isVerified ? game.id : null,
+          color: 'black',
         })
+      );
+    }
+
+    if (payload.type === 'ready' && ws === game.activePlayer) {
+      game.activePlayer.send(JSON.stringify({ type: 'turn' }));
+    }
+
+    if (payload.type === 'move' && game.id === payload.id) {
+      game.toggleActivePlayer();
+      game.state = payload.fen;
+      game.activePlayer?.send(
+        JSON.stringify({ type: 'update', fen: game.state })
       );
     }
   };

@@ -27,9 +27,11 @@ export default class Board {
         );
       }
     }
+
+    this.initCells();
   }
 
-  public initCells(isWhite = false) {
+  public initCells(isWhite = true) {
     this.isWhite = isWhite;
     const playerColor = isWhite ? Color.WHITE : Color.BLACK;
     const opponentColor = isWhite ? Color.BLACK : Color.WHITE;

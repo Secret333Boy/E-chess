@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import WebSocketContext from '../contexts/WebSocketContext';
-import { setGameId } from '../store/actions/gameActions';
+import { Color } from '../models/enums/Color';
+import { setColor, setGameId } from '../store/actions/gameActions';
 import { useAppDispatch } from '../store/hooks';
 
 const GameIdForm = () => {
@@ -18,6 +19,7 @@ const GameIdForm = () => {
       if (data.type === 'verified') {
         console.log(data.id);
         dispatch(setGameId(data.id));
+        dispatch(setColor(data.color === 'white' ? Color.WHITE : Color.BLACK));
       }
     };
     ws.send(JSON.stringify({ type: 'request' }));

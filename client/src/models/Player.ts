@@ -7,22 +7,27 @@ import Move from './Move';
 
 export default class Player {
   public selectedFigure: Figure | null = null;
-  public color: Color;
+  public color: Color | null;
   private board: Board;
   private updateBoard: () => void;
   private gameMode: GameMode;
+  private ws?: WebSocket;
+  private gameId?: string;
 
   constructor(
-    color: Color,
+    color: Color | null,
     board: Board,
     updateBoard: () => void,
-    gameMode = GameMode.ON_THE_SAME_DEVICE
+    gameMode = GameMode.ON_THE_SAME_DEVICE,
+    ws?: WebSocket,
+    gameId?: string
   ) {
-    board.initCells(color === Color.WHITE);
     this.color = color;
     this.board = board;
     this.updateBoard = updateBoard;
     this.gameMode = gameMode;
+    this.ws = ws;
+    this.gameId = gameId;
   }
 
   public selectFigure(figure: Figure) {
@@ -60,8 +65,19 @@ export default class Player {
       this.selectedFigure = null;
       if (this.gameMode === GameMode.ON_THE_SAME_DEVICE) {
         this.color = this.color === Color.WHITE ? Color.BLACK : Color.WHITE;
-        this.board.togglePlayerColor();
       }
+
+      if (this.gameMode === GameMode.WITH_A_FRIEND) {
+        this.color = null;
+        this.ws?.send(
+          JSON.stringify({
+            type: 'move',
+            id: this.gameId,
+            fen: this.board.getFENCode(),
+          })
+        );
+      }
+      this.board.togglePlayerColor();
       this.updateBoard();
     }
   }
