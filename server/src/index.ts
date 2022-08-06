@@ -19,6 +19,7 @@ wss.on('connection', async (ws) => {
     if (payload.type === 'request') {
       game.playerWhite = ws;
       ws.send(JSON.stringify({ type: 'gameId', id: game.id }));
+      return;
     }
 
     if (payload.type === 'verify') {
@@ -40,10 +41,12 @@ wss.on('connection', async (ws) => {
           color: 'black',
         })
       );
+      return;
     }
 
     if (payload.type === 'ready' && ws === game.activePlayer) {
       game.activePlayer.send(JSON.stringify({ type: 'turn' }));
+      return;
     }
 
     if (payload.type === 'move' && game.id === payload.id) {
