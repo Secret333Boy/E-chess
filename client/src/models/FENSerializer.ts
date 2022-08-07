@@ -81,7 +81,6 @@ export default class FENSerializer {
             cell.setFigure(new King(Color.WHITE));
             break;
           case 'p':
-            console.log(i);
             cell.setFigure(new Pawn(Color.BLACK, i === 1, true));
             break;
           case 'n':

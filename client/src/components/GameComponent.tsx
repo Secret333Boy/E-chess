@@ -49,7 +49,6 @@ const GameComponent: React.FC<GameComponentProps> = ({ gameMode }) => {
 
       if (data.type === 'update') {
         board.applyFENCode(data.fen);
-        console.log(data.fen, board);
         ws.send(JSON.stringify({ type: 'ready' }));
       }
       setBoard(board.copy());
