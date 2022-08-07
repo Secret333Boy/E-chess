@@ -8,6 +8,7 @@ import Pawn from './figures/Pawn';
 import Queen from './figures/Queen';
 import Rook from './figures/Rook';
 import Position from './interfaces/Position';
+import Move from './Move';
 
 export default class Board {
   private grid: Cell[][];
@@ -89,5 +90,19 @@ export default class Board {
 
   public applyFENCode(fen: string): void {
     this.grid = FENSerializer.deserialize(fen, this);
+  }
+
+  public applyUnsafeMove(move: Move) {
+    const { from, to } = move;
+
+    const cellFrom = this.getCell(from);
+    const cellTo = this.getCell(to);
+
+    if (!cellFrom || !cellTo || cellFrom.isEmpty || !cellTo.isEmpty) return;
+
+    const figure = cellFrom.getFigure();
+    cellFrom.setFigure(null);
+    cellTo.setFigure(figure);
+    this.togglePlayerColor();
   }
 }

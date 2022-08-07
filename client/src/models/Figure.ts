@@ -4,6 +4,7 @@ import { Color } from './enums/Color';
 import Move from './Move';
 import Position from './interfaces/Position';
 import { FigureType } from './enums/FiguteType';
+import isMate from '../utils/isMate';
 
 export default class Figure {
   public readonly color: Color;
@@ -30,8 +31,20 @@ export default class Figure {
     this.availableMovesCallback = availableMovesCallback;
   }
 
-  get availableMoves() {
+  get unsafeAvailableMoves() {
     return this.availableMovesCallback(this.cell?.position, this.cell?.board);
+  }
+
+  get availableMoves() {
+    return this.unsafeAvailableMoves.filter((move) => {
+      const board = this.cell?.board;
+      if (!board) return false;
+      const backMove = new Move(move.to, move.from);
+      board.applyUnsafeMove(move);
+      const res = !isMate(board);
+      board.applyUnsafeMove(backMove);
+      return res;
+    });
   }
 
   public static isFigure(obj: unknown) {

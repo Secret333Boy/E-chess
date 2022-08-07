@@ -60,6 +60,7 @@ const pawnAvailableMovesCallback =
   };
 
 export default class Pawn extends Figure {
+  private isFirstMove: boolean;
   private down: boolean;
   constructor(color: Color, isFirstMove: boolean, down = false) {
     super(
@@ -67,6 +68,7 @@ export default class Pawn extends Figure {
       FigureType.PAWN,
       pawnAvailableMovesCallback(down, isFirstMove)
     );
+    this.isFirstMove = isFirstMove;
     this.down = down;
   }
 
